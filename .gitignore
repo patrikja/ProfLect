@@ -36,6 +36,7 @@
 *.nav
 *.snm
 *.vrb
+*.ptb
 
 # hyperref
 *.brf
@@ -48,3 +49,7 @@
 
 #Backup-files (from emacs)
 *~
+
+#Generated files in this particular repo
+PatrikJanssonProfLect.pdf
+PatrikJanssonProfLect.tex

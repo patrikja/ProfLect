@@ -11,7 +11,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref} %% for run: links
 %include dslmagda.fmt
-%include tfpie2015slides.format
+%include PatrikJanssonProfLect.format
 
 %%\input{macros.TeX}
 
@@ -535,7 +535,7 @@ Partial implementation in Agda:
 \frametitle{Bibliography}
 
 \bibliographystyle{abbrvnat}
-\bibliography{../lagda/dslm}
+\bibliography{PatrikJanssonProfLect}
 \end{frame}
 
 
