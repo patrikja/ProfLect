@@ -1,19 +1,18 @@
-% --*-Latex-*--
-
+% -*- Latex -*-
 \documentclass[colorhighlight,coloremph]{beamer}
 \usetheme{boxes}
 \usetheme{Madrid} % Lots of space (good), but no section headings
 %\usetheme{Hannover}% Sections heading but too much wasted space
 %\usetheme{Dresden}
 %\usetheme{Warsaw}
+\usepackage[utf8x]{inputenc}
 \usepackage{natbib}
 \usepackage{color,soul}
 \usepackage{graphicx}
 \usepackage{hyperref} %% for run: links
+\hypersetup{pdfpagemode={FullScreen}}
 %include dslmagda.fmt
 %include PatrikJanssonProfLect.format
-
-%%\input{macros.TeX}
 
 % Changing the way code blocks are presented:
 % \renewcommand\hscodestyle{%
@@ -21,25 +20,44 @@
 %    \small
 % }
 
+\pgfdeclareimage[height=3cm]{Tall}{images/Tall_i_sol_Langvind.jpg}
+\pgfdeclareimage[height=3cm]{Ekorre}{images/Ekorre_smultron_Langvind.jpg}
+\pgfdeclareimage[height=1.5cm]{university-logo}{images/ChalmGUmarke}
+
 \newenvironment{myquote}
   {\begin{exampleblock}{}}
   {\end{exampleblock}}
 
+\logo{\pgfuseimage{university-logo}}
+
+\setbeamertemplate{navigation symbols}{}
+
 \addheadbox{section}{\quad \tiny ProfLect P. Jansson, 2015-08-21}
-\title[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
+\title{Strongly Typed Programs and Proofs}
 
 \author[P. Jansson]
-       {Patrik Jansson \qquad {\small \texttt{patrikj@@chalmers.se}}}
+       {Patrik Jansson, fp.st.cse.chalmers.se}
+\institute[Chalmers\&GU]
+          {Chalmers University of Technology
+           and University of Gothenburg
+          }
+\date {
+    Prof. lecture, 2015-08-21
+      }
 
 \begin{document}
-\setbeamertemplate{navigation symbols}{}
-\date{}
 \begin{frame}
+  \maketitle
 
-\maketitle
+\pgfuseimage{Tall}
+\pgfuseimage{Ekorre}
 
 This talk: \url{https://github.com/patrikja/ProfLect}
+\end{frame}
 
+\section[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
+
+\begin{frame}{DSLM: Domain Specific Languages of Mathematics}
 \begin{exampleblock}{Style example}
 \begin{spec}
 Forall (eps elemOf Real) ((eps > 0)  =>  (Exists (a elemOf A) ((abs(a - sup A)) < eps)))
