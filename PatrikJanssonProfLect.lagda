@@ -42,7 +42,7 @@
            and University of Gothenburg
           }
 \date {
-    Prof. lecture, 2015-08-21
+    2015-08-21
       }
 
 \begin{document}
@@ -54,6 +54,15 @@
 
 This talk: \url{https://github.com/patrikja/ProfLect}
 \end{frame}
+\section{Tools and methods}
+\begin{frame}{Tools and methods}
+Tools used
+\begin{itemize}
+\item Types: we use (strong) type systems
+\item FP: we use functional programming languages\\(often Haskell, but also Agda, Idris)
+\end{itemize}
+\end{frame}
+%%TODO add concrete examples
 
 \section[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
 
@@ -69,7 +78,7 @@ Forall (eps elemOf Real) ((eps > 0)  =>  (Exists (a elemOf A) ((abs(a - sup A)) 
 
 
 %% -------------------------------------------------------------------
-\section{Intro}
+\subsection{Intro}
 
 \begin{frame}
 \frametitle{Background}
@@ -90,6 +99,8 @@ functional programming perspective (similar to
 ``... ideally, the course would improve the mathematical education of computer scientists and the computer science education of mathematicians.''
 \end{exampleblock}
 
+\vfill
+\vfill
 
 \end{frame}
 
@@ -119,7 +130,7 @@ Not working code, rather working understanding of concepts
 
 %% -------------------------------------------------------------------
 
-\section{Types}
+\subsection{Types}
 \begin{frame}
 \frametitle{Complex numbers}
 \begin{myquote}
@@ -330,7 +341,7 @@ Not working code, rather working understanding of concepts
 
 
 %% -------------------------------------------------------------------
-\section{Proofs}
+\subsection{Proofs}
 
 \begin{frame}
 \frametitle{Completeness property of |Real|}
