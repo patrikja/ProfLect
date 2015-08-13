@@ -182,6 +182,90 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 
 \end{frame}
 
+%TODO Practical tools: Strongly typed functional programming: Haskell, Agda, Idris
+
+\begin{frame}{Polytypic Data Conversion Programs}
+TODO
+
+  Polytypic Data Conversion Programs \citep{janssonjeuring-dataconv}
+
+arrows, correctness proofs, etc.
+
+\end{frame}
+
+\begin{frame}{Pedagogical development and leadership (2002--)}
+
+  \begin{itemize}
+  \item 2002: Director of studies
+  \item 2005: Vice Head of Department for education
+  \item 2008: Deputy project leader of ``Pedagogical development of Master’s Programmes for the Bologna Structure at Chalmers'' (\textbf{30M SEK})
+  \item 2011: Head of the 5-year education programme in Computer Science and Engineering (Civilingenjör Datateknik, Chalmers). %On average 40\% of full time / year.
+  \item 2013: Head of the Division of Software Technology
+  \end{itemize}
+\end{frame}
+
+\newcommand\textGamma{\ensuremath{\gamma}}
+\begin{frame}{My PhD graduates: Norell, Danielsson, and Bernardy}
+%\begin{frame}{My PhD graduates: Norell ('07), Danielsson ('07), and Bernardy ('11)}
+
+I worked on
+\begin{itemize}
+\item generic programs and proofs with Norell \pause\\ {\Huge ~ $\Rightarrow$ Agda},
+\pause
+\item on program correctness through types with Danielsson \pause\\
+$\Rightarrow$ Fast'n Loose Reasoning, %~\cite{danielssonetal06:fastandloose},
+Chasing Bottoms, %~\citep{danielssonjansson04:chasingbottoms},
+\ldots
+\pause
+\item parametricity for dependent types \& testing with Bernardy\pause
+%format Gamma = "\Gamma"
+% %format Abar  = "\bar{A}"
+%format Abar  = "\overline{A}"
+
+Proofs for free:
+> ⟦_⟧ : PTS → PTS
+> Gamma ⊢ A : B   =>   ⟦ Gamma ⟧ ⊢ ⟦A⟧ : ⟦B⟧ Abar
+> where
+>   ⟦A⟧         is the free proof and
+>   ⟦B⟧ Abar    is the free theorem
+and |PTS| = Pure Type System (Barendregt, et al.)
+
+\end{itemize}
+% Norell: ICFP invited talk 2013
+
+% Upper triangular matrix: https://twitter.com/patrikja/status/408974543873921024/photo/1
+
+\end{frame}
+
+\begin{frame}{Algebra of Programming in Agda}
+TODO
+\end{frame}
+
+\begin{frame}{Feat: functional enumeration of algebraic types}
+TODO:
+
+  Jonas Duregård
+
+\end{frame}
+
+\begin{frame}{Global Systems Science}
+
+Global Systems Science work \citep{jaeger13:GSSshort}\\ leading to the FETPROACT1 call, the GRACeFUL\\ project and the CoEGSS project.
+
+\end{frame}
+
+\begin{frame}{Ongoing work}
+
+DSLM: Presenting Mathematical Analysis Using Functional Programming
+
+Sequential Decision Problems, dependent types and generic solutions
+
+A computational theory of policy advice and avoidability
+
+Certified Context-Free Parsing: A formalisation of Valiant's Algorithm in Agda
+
+\end{frame}
+
 \section[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
 
 \begin{frame}{DSLM: Domain Specific Languages of Mathematics}
