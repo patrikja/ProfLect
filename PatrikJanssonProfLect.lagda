@@ -9,6 +9,8 @@
 \usepackage{natbib}
 \usepackage{color,soul}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{cd}
 \usepackage{hyperref} %% for run: links
 \hypersetup{pdfpagemode={FullScreen}}
 %include dslmagda.fmt
@@ -104,7 +106,7 @@ then generalise to other datatypes like these
 < data Rose a   =  Fork a [Rose a]
 
 \end{frame}
-\begin{frame}{The Haskell language extension PolyP}
+\begin{frame}{The Haskell language extension PolyP (POPL'97)}
 
 We obtain
 
@@ -126,16 +128,59 @@ of the regular datatype |d a|.
 
 \end{frame}
 
+\newcommand{\cata}[1]{\ensuremath{(\![{#1}]\!)}}
+%format alpha = "\alpha"
+%format beta  = "\beta"
+%format muF   = "\mu" F
+%format (cata alg) = "\cata{" alg "}"
+%format alg = alpha
+\begin{frame}[fragile]{Polytypic $\leadsto$ Generic Programming}
+Summer schools lecture notes (|>150| citations each):
+  \begin{itemize}
+  \item Polytypic Programming [Jeuring \& Jansson, 1996]
+  \item Generic Programming - An Introduction [Backhouse, Jansson, Jeuring \& Meertens, 1999]
+  \end{itemize}
 
-\section{Tools and methods}
-\begin{frame}{Tools and methods}
-Tools used
-\begin{itemize}
-\item Types: we use (strong) type systems
-\item FP: we use functional programming languages\\(often Haskell, but also Agda, Idris)
-\end{itemize}
+
+\begin{tikzcd}
+|F muF| \arrow{r}{|inn|} \arrow{d}{|F (cata alg)|}  &|muF| \arrow{d}{|cata alg|}\\
+|F A| \arrow{r}{|alg|}                    &A
+\end{tikzcd}
+
+
+% The smiley face signifies that the diagram \tterm{commutes}: the two
+% paths from $F A$ to $B$ are equivalent.
+
 \end{frame}
-%%TODO add concrete examples
+\section{Tools and methods}
+\begin{frame}[fragile]{Theoretical tools}
+
+  \begin{exampleblock}{Categories, functors and algebras}
+Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
+  \end{exampleblock}
+\pause
+\begin{exampleblock}{Homomorphisms between algebras}
+|h : (A, alpha) -> (B, beta)| \quad with \quad
+%
+\begin{tikzcd}
+|F A| \arrow{r}{|alpha|} \arrow{d}{|F h|}  &|A| \arrow{d}{|h|}\\
+|F B| \arrow{r}{|beta|}                    &|B|
+\end{tikzcd}
+%
+\end{exampleblock}
+\pause
+
+\begin{exampleblock}{Catamorphisms}
+|cata _ : (F A -> A) -> (muF -> A)| \quad with \qquad
+%
+\begin{tikzcd}
+|F muF| \arrow{r}{|inn|} \arrow{d}{|F (cata alg)|}  &|muF| \arrow{d}{|cata alg|}\\
+|F A| \arrow{r}{|alg|}                    &A
+\end{tikzcd}
+\end{exampleblock}
+
+
+\end{frame}
 
 \section[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
 
