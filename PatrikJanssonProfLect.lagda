@@ -49,11 +49,84 @@
 \begin{frame}
   \maketitle
 
+\begin{minipage}{4.8cm}
 \pgfuseimage{Tall}
+~
 \pgfuseimage{Ekorre}
+\end{minipage}
+~
+\begin{minipage}{6.5cm}
+``It is one of the first duties of a professor, in any subject, to
+exaggerate a little both the importance of his subject and his own
+importance in it'' [A Mathematician’s Apology, G.~H.~Hardy]\\
+~
+\end{minipage}
+
 
 This talk: \url{https://github.com/patrikja/ProfLect}
 \end{frame}
+\section{Best results}
+\begin{frame}{My best results over the years}
+Among my best results I count
+\begin{itemize}
+\item early work on Generic Programming \citep{backhouseetal98, janssonjeuring1997a} (well cited)
+\item Polytypic Data Conversion Programs \citep{janssonjeuring-dataconv}
+\item the Bologna structure (3y BSc + 2y MSc) at cse.chalmers.se
+ in my role as Vice Head of Department
+\item my PhD graduates: Norell, Danielsson, and Bernardy
+\item Fast and Loose Reasoning \citep{danielssonetal06:fastandloose}
+\item Algebra of Programming in Agda \citep{MuKoJansson2009AoPA}
+\item Parametricity and dependent types \citep{bernardy_parametricity_2010}
+\item Feat: functional enumeration of algebraic types \citep{duregardHaskell12Feat}
+\item self-evaluation reports for the CSE degrees (in my role as Head of the CSE programme).
+      The BSc got ``very high quality''.
+\item Global Systems Science work \citep{jaeger13:GSSshort}\\ leading to the FETPROACT1 call, the GRACeFUL\\ project and the CoEGSS project.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Functional Polytypic Programming (1995--2000)}
+
+% My PhD thesis was a monograph based on eight papers on different aspects of a generic programming extensions to Haskell called PolyP.
+What is a ``polytypic function''?
+
+Start from the normal |sum| function on lists:
+
+> sum :: Num a => [a] -> a
+> sum  []       =   0
+> sum  (x:xs)   =   x + sum xs
+
+then generalise to other datatypes like these
+
+< data [a]      =  []       | a : [a]
+< data Tree a   =  Leaf a   | Bin (Tree a) (Tree a)
+< data Maybe a  =  Nothing  | Just a
+< data Rose a   =  Fork a [Rose a]
+
+\end{frame}
+\begin{frame}{The Haskell language extension PolyP}
+
+We obtain
+
+> psum :: (Regular d, Num a) => d a -> a
+> psum  = cata fsum
+
+where |fsum| is defined by induction over the pattern functor |f|
+of the regular datatype |d a|.
+
+< polytypic fsum :: Num a => f a a -> a
+<   = case  f of
+<           g + h    ->  either fsum fsum
+<           g * h    ->  \(x,y) -> fsum x + fsum y
+<           Empty    ->  \x -> 0
+<           Par      ->  id
+<           Rec      ->  id
+<           d @ g    ->  psum . pmap fsum
+<           Const t  ->  \x -> 0
+
+\end{frame}
+
+
 \section{Tools and methods}
 \begin{frame}{Tools and methods}
 Tools used
