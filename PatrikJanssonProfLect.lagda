@@ -155,9 +155,9 @@ Summer schools lecture notes (|>150| citations each):
 \section{Tools and methods}
 \begin{frame}[fragile]{Theoretical tools}
 
-  \begin{exampleblock}{Categories, functors and algebras}
+\begin{exampleblock}{Categories, functors and algebras}
 Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
-  \end{exampleblock}
+\end{exampleblock}
 \pause
 \begin{exampleblock}{Homomorphisms between algebras}
 |h : (A, alpha) -> (B, beta)| \quad with \quad
@@ -185,12 +185,41 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 %TODO Practical tools: Strongly typed functional programming: Haskell, Agda, Idris
 
 \begin{frame}{Polytypic Data Conversion Programs}
-TODO
 
-  Polytypic Data Conversion Programs \citep{janssonjeuring-dataconv}
+> data SA s a b = SA ((a,s) -> (b,s))
+>
+> separate  :: Regular d => SA [a] (d a) (d ())
+> separate  = pmapAr put
+>
+> combine   :: Regular d => SA [a] (d ()) (d a)
+> combine   = pmapAl get
+>
+> put  ::  SA [a] a ()
+> put  =   SA (\(a,xs)->((),a:xs))
+>
+> get  ::  SA [a] () a
+> get  =   SA (\((),a:xs)->(a,xs))
 
-arrows, correctness proofs, etc.
-
+% TODO: shorten
+%%%Original abstract from the DataConv paper
+% Several generic programs for converting values from regular datatypes
+% to some other format, together with their corresponding inverses, are
+% constructed.
+% %
+% Among the formats considered are shape plus contents, compact bit
+% streams and pretty printed strings.
+% %
+% The different data conversion programs are constructed using John
+% Hughes' Arrow combinators along with a proof that printing (from a
+% regular datatype to another format) followed by parsing (from that
+% format back to the regular datatype) is the identity.
+% %
+% The printers and parsers are described in
+% %
+% PolyP
+% %
+% a polytypic extension of the functional language Haskell.
+%
 \end{frame}
 
 \begin{frame}{Pedagogical development and leadership (2002--)}

@@ -1,0 +1,15 @@
+Inaugural lecture by Patrik Jansson
+
+Patrik Jansson at the Department of Computer Science and Engineering will hold his lecture for professorship, entitled "Strongly Typed Programs and Proofs"
+
+I will present highlights from 20 years of scientific adventures in the world of strongly typed functional programming, domain specific languages and even global systems science.
+
+​Patrik Jansson is head of the Software Technology division at Computer Science and Engineering.
+
+* Category: Public lecture
+* Location: EC, EDIT-building, Rännvägen 6, Johanneberg.
+* Starts: 21 August, 2015, 13:00
+* Ends: 21 August, 2015, 14:00
+
+Source:
+* http://www.chalmers.se/en/departments/cse/calendar/Pages/patrikjanssonprof.aspx
