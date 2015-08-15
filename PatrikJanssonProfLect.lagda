@@ -183,11 +183,32 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 \end{frame}
 
 %TODO Practical tools: Strongly typed functional programming: Haskell, Agda, Idris
+\begin{frame}{Implementing the theory (in Haskell)}
+
+> class Category cat where -- In the Haskell library |Control.Category|
+>     id   :: cat a a                          -- the identity arrow
+>     (.)  :: cat b c -> cat a b -> cat a c    -- arrow composition
+>  -- Identity laws: |id . p = p = p . id = p|
+>  -- Associativity: |(p . q) . r = p . (q . r)|
+
+\pause
+
+> instance Category  (->)     where id x = x; (f . g) x = f (g x)
+> instance Category  (SA s)   where -- ...
+> data SA s a b = SA ((a,s) -> (b,s))  -- ``Stateful functions''
+
+and many other instances.
+
+\end{frame}
 
 \begin{frame}{Polytypic Data Conversion Programs}
 
-> data SA s a b = SA ((a,s) -> (b,s))
->
+While John Hughes wrote ``Generalising Monads to Arrows'' [SCP'00]
+we used them for data conversion [SCP'02].
+
+The starting point was separation of a datastructure (of type |d a|)
+into its shape (|d ()|) and contents (|[a]|).
+
 > separate  :: Regular d => SA [a] (d a) (d ())
 > separate  = pmapAr put
 >
@@ -267,7 +288,36 @@ and |PTS| = Pure Type System (Barendregt, et al.)
 \end{frame}
 
 \begin{frame}{Algebra of Programming in Agda}
-TODO
+
+While Agda was implemented by Ulf Norell and Nils Anders Danielsson
+we used it for the Algebra of Programming.
+
+One highlight is the notation for equality proofs
+
+> begin
+>   term1
+> ≈⟨ step1 ⟩   -- |step1 :   term1 == term2|
+>   term2
+> ≈⟨ step2 ⟩   -- |step2 :   term2 == term3|
+>   term3
+> ∎
+
+\end{frame}
+
+\begin{frame}{An example proof in Idris}
+TODO: explain notation
+
+> baseCase :  (x : Float) -> (n : Nat) -> (x^Z * x^n = x^(Z+n))
+> baseCase x n =
+>     ( x^Z * x^n )
+>   ={ Refl }=                     -- By definition of |x^n|
+>     (   1 * x^n )
+>   ={ unitMult (x^n) }=           -- Use |1*y=y| for |y=x^n|
+>     (   x^n   )
+>   ={ Refl }=                     -- By definition of |(+)|
+>     ( x^(Z+n) )
+>   QED
+
 \end{frame}
 
 \begin{frame}{Feat: functional enumeration of algebraic types}
