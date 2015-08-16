@@ -182,7 +182,6 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 
 \end{frame}
 
-%TODO Practical tools: Strongly typed functional programming: Haskell, Agda, Idris
 \begin{frame}{Implementing the theory (in Haskell)}
 
 > class Category cat where -- In the Haskell library |Control.Category|
@@ -296,27 +295,46 @@ One highlight is the notation for equality proofs
 
 > begin
 >   term1
-> ≈⟨ step1 ⟩   -- |step1 :   term1 == term2|
+> ≡⟨ step1 ⟩   -- |step1 :   term1 ≡ term2|
 >   term2
-> ≈⟨ step2 ⟩   -- |step2 :   term2 == term3|
+> ≡⟨ step2 ⟩   -- |step2 :   term2 ≡ term3|
 >   term3
 > ∎
 
 \end{frame}
 
-\begin{frame}{An example proof in Idris}
-TODO: explain notation
+%format *R  = "\ensuremath{\mathbin{*_{\tiny" Real "}}}"
+%format _^_ = "\_" ^ "\_"
+%format ^ = "\ensuremath{\mathbin{\!\hat{}\!}}"
+\begin{frame}{An example proof in Agda, part 1}
 
-> baseCase :  (x : Float) -> (n : Nat) -> (x^Z * x^n = x^(Z+n))
-> baseCase x n =
->     ( x^Z * x^n )
->   ={ Refl }=                     -- By definition of |x^n|
->     (   1 * x^n )
->   ={ unitMult (x^n) }=           -- Use |1*y=y| for |y=x^n|
->     (   x^n   )
->   ={ Refl }=                     -- By definition of |(+)|
->     ( x^(Z+n) )
->   QED
+\begin{code}
+expLemma :  (x : Real) -> (m n  : Nat)  -> (x ^ m  *R  x ^ n ≡ x ^ (m + n))
+baseCase :  (x : Real) -> (n    : Nat)  -> (x ^ Z  *R  x ^ n ≡ x ^ (Z + n))
+stepCase :  (x : Real) -> (m n  : Nat)  ->
+            (ih :  x ^ m      *R  x ^ n ≡ x ^ (m + n))      ->
+            (      x ^ (S m)  *R  x ^ n ≡ x ^ ((S m) + n))
+
+expLemma x Z      n = baseCase x n
+expLemma x (S m)  n = stepCase x m n (expLemma x m n)
+\end{code}
+\end{frame}
+
+\begin{frame}{An example proof in Agda, part 2}
+
+\begin{code}
+baseCase :  (x : Real) -> (n    : Nat)  -> (x ^ Z  *R  x ^ n ≡ x ^ (Z + n))
+baseCase x n =
+  begin
+     x ^ Z  *R  x ^ n
+  ≡⟨  refl ⟩                        -- By definition of |_^_|
+     one *R x ^ n
+  ≡⟨ unitMult (x ^ n) ⟩             -- Use |one *R y = y| for |y = x ^ n|
+       x ^ n
+  ≡⟨ refl ⟩                         -- By definition of |_+_|
+     x ^ (Z + n)
+  ∎
+\end{code}
 
 \end{frame}
 
