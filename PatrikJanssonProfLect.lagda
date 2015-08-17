@@ -288,8 +288,8 @@ and |PTS| = Pure Type System (Barendregt, et al.)
 
 \begin{frame}{Algebra of Programming in Agda}
 
-While Agda was implemented by Ulf Norell and Nils Anders Danielsson
-we used it for the Algebra of Programming.
+  While Agda was implemented by Norell, Danielsson et al.  we used it
+  for the Algebra of Programming.
 
 One highlight is the notation for equality proofs
 
@@ -300,6 +300,11 @@ One highlight is the notation for equality proofs
 > ≡⟨ step2 ⟩   -- |step2 :   term2 ≡ term3|
 >   term3
 > ∎
+
+%This notation is actually equivalent to just one application of transitivity of equality and could thus be shortened to |trans step1 step2|.
+
+Roughly equivalent to |trans step1 step2| but often \\
+more readable (at least in more complicated cases).
 
 \end{frame}
 
@@ -327,7 +332,7 @@ baseCase :  (x : Real) -> (n    : Nat)  -> (x ^ Z  *R  x ^ n ≡ x ^ (Z + n))
 baseCase x n =
   begin
      x ^ Z  *R  x ^ n
-  ≡⟨  refl ⟩                        -- By definition of |_^_|
+  ≡⟨ refl ⟩                         -- By definition of |_^_|
      one *R x ^ n
   ≡⟨ unitMult (x ^ n) ⟩             -- Use |one *R y = y| for |y = x ^ n|
        x ^ n
@@ -336,22 +341,49 @@ baseCase x n =
   ∎
 \end{code}
 
+
+
 \end{frame}
 
-\begin{frame}{Feat: functional enumeration of algebraic types}
-TODO:
+\begin{frame}[fragile]{Feat: functional enumeration of algebraic types}
+{\small [with Duregård and Wang, Haskell Symposium 2012]}
+\vfill
+%format indexT t = index "_{" t "}"
 
-  Jonas Duregård
+An efficiently computable bijective function
+|indexT a :: Nat -> a|, much like |toEnum| in the |Enum| class.
+\vfill
+
+Example: enumerate ``raw abstract syntax trees'' for Haskell.
+\begin{myquote}
+\begin{verbatim}
+*Main> index (10^5) :: Exp
+AppE (LitE (StringL ""))
+     (CondE (ListE []) (ListE []) (LitE (IntegerL 1)))
+\end{verbatim}
+\end{myquote}
+\pause
+\begin{myquote}
+\begin{verbatim}
+*Main> index (10^100) :: Exp
+ArithSeqE (FromR (AppE (AppE (ArithSeqE (FromR (ListE [])))
+... -- and 20 more lines!
+\end{verbatim}
+\end{myquote}
+
 
 \end{frame}
 
 \begin{frame}{Global Systems Science}
+
+TODO: textify
 
 Global Systems Science work \citep{jaeger13:GSSshort}\\ leading to the FETPROACT1 call, the GRACeFUL\\ project and the CoEGSS project.
 
 \end{frame}
 
 \begin{frame}{Ongoing work}
+TODO: textify
 
 DSLM: Presenting Mathematical Analysis Using Functional Programming
 

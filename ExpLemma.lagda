@@ -1,13 +1,17 @@
 \begin{code}
 module ExpLemma where
-open import Data.Float
 open import Data.Nat renaming (ℕ to Nat; zero to Z; suc to S)
--- open import Relation.Binary
 import Relation.Binary.PropositionalEquality as PropEq
 open PropEq using (_≡_; refl; cong)
 open PropEq.≡-Reasoning
 \end{code}
 
+The module |PropEq| defines convenient operators for reasoning with
+equivalence relations, including the special case of propositional
+equality (in the submodule |≡-Reasoning|).
+
+This file is intended as an illustration of the style of equational
+reasoning that Agda (and Idris) supports.
 
 \begin{code}
 postulate
@@ -26,9 +30,6 @@ x ^ (S n)  = x *R (x ^ n)
 \end{code}
 
 Equality and equational reasoning
-
-\begin{code}
-\end{code}
 
 Let's prove a lemma about exponentiation by induction over the first
 |Nat| argument.
