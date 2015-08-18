@@ -1,3 +1,10 @@
+%format polytypic               =  "\Keyword{polytypic}"
+%format case                    =  "\Keyword{case}"
+%format of                      =  "\Keyword{of}"
+%format class                   =  "\Keyword{class}"
+%format instance                =  "\Keyword{instance}"
+%format where                   =  "\ \Keyword{where}\ "
+
 %format Real                    =  "\mathbb{R}"
 %format Nat                     =  "\mathbb{N}"
 %format RPos                    =  "\mathbb{R}_{> 0}"
@@ -34,4 +41,3 @@
 %format CC                      =  "\mathbb{C}"
 %format Sigma                   =  "\Sigma"
 %format @                       =  "\!@\!"
-%format where                   =  "\ \Keyword{where}\ "
