@@ -133,6 +133,7 @@ of the regular datatype |d a|.
 %format beta  = "\beta"
 %format muF   = "\mu" F
 %format (cata alg) = "\cata{" alg "}"
+%format cataT = cata
 %format alg = alpha
 \begin{frame}[fragile]{Polytypic $\leadsto$ Generic Programming}
 Summer schools lecture notes (|>150| citations each):
@@ -147,6 +148,9 @@ Summer schools lecture notes (|>150| citations each):
 |F A| \arrow{r}{|alg|}                    &A
 \end{tikzcd}
 
+Notation:
+> cata alg  = cataT alg
+> F h       = fmap h
 
 % The smiley face signifies that the diagram \tterm{commutes}: the two
 % paths from $F A$ to $B$ are equivalent.
@@ -179,6 +183,7 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 \end{tikzcd}
 \end{exampleblock}
 
+% TODO: explain that the cata-diagram can be used to implement |cata alg|. (|inn| has the inverse |out|, expand the diagram in as many copies as needed into a ladder, for a particular finite value, etc.)
 
 \end{frame}
 
@@ -220,7 +225,7 @@ into its shape (|d ()|) and contents (|[a]|).
 > get  ::  SA [a] () a
 > get  =   SA (\((),a:xs)->(a,xs))
 
-TODO: add where it ends up (prett-print/parse round-trip properties, motivate with save / load documents in editors).
+TODO: add where it ends up (pretty-print/parse round-trip properties, motivate with save / load documents in editors).
 
 \end{frame}
 
@@ -245,7 +250,7 @@ I worked on
 \pause
 \item on program correctness through types with Danielsson \pause\\
 $\Rightarrow$ Fast'n Loose Reasoning, %~\cite{danielssonetal06:fastandloose},
-Chasing Bottoms, %~\citep{danielssonjansson04:chasingbottoms},
+\pause Chasing Bottoms, %~\citep{danielssonjansson04:chasingbottoms},
 \ldots
 \pause
 \item parametricity for dependent types \& testing with Bernardy\pause
@@ -266,6 +271,32 @@ and |PTS| = Pure Type System (Barendregt, et al.)
 
 % Upper triangular matrix: https://twitter.com/patrikja/status/408974543873921024/photo/1
 
+\end{frame}
+
+\begin{frame}{Global Systems Science (GSS)}{with the Potsdam institute for Climate Impact Research (PIK)}
+
+  \begin{itemize}
+  \item Collaboration from 2007 onwards (main contact: Cezar Ionescu)
+  \item Aim: \emph{correct} software models for simulating global
+    systems
+\pause
+  \item Algebra of Programming [PhD course and two papers]
+  \item Global Systems Dynamic of Policy [FET-Open 2010--13, 1.3M EUR]
+  \item Workshops including ``Domain Specific Languages for Economical
+    and Environmental Modelling'', 2011
+\pause
+  \item The call
+    \textbf{\href{http://ec.europa.eu/research/participants/portal/desktop/en/opportunities/h2020/topics/2074-fetproact-1-2014.html}{FETPROACT1}}
+    (Future and Emerging Technology, Proactive support for GSS) in
+    Horizon 2020 is concrete evidence on the success of this line of
+    work.
+  \item Project GRACeFUL: ``Global systems Rapid Assessment tools
+    through Constraint FUnctional Languages'' granted (with
+    \textbf{2.4M EUR}, 2015--2018) by the FETPROACT1 call.
+\pause
+  \item Upcoming project CoEGSS: ``Center of Excellence\\ for Global
+    Systems Science'', start 2015-10-01, 3y.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Algebra of Programming in Agda}
@@ -290,9 +321,6 @@ more readable (at least in more complicated cases).
 
 \end{frame}
 
-%format *R  = "\ensuremath{\mathbin{*_{\tiny" Real "}}}"
-%format _^_ = "\_" ^ "\_"
-%format ^ = "\ensuremath{\mathbin{\!\hat{}\!}}"
 \begin{frame}{An example proof in Agda, part 1}
 
 \begin{code}
@@ -354,32 +382,6 @@ ArithSeqE (FromR (AppE (AppE (ArithSeqE (FromR (ListE [])))
 \end{myquote}
 
 
-\end{frame}
-
-\begin{frame}{Global Systems Science (GSS)}{with the Potsdam institute for Climate Impact Research (PIK)}
-
-  \begin{itemize}
-  \item Collaboration from 2007 onwards (main contact: Cezar Ionescu)
-  \item Aim: \emph{correct} software models for simulating global
-    systems
-\pause
-  \item Algebra of Programming [PhD course and two papers]
-  \item Global Systems Dynamic of Policy [FET-Open 2010--13, 1.3M EUR]
-  \item Workshops including ``Domain Specific Languages for Economical
-    and Environmental Modelling'', 2011
-\pause
-  \item The call
-    \textbf{\href{http://ec.europa.eu/research/participants/portal/desktop/en/opportunities/h2020/topics/2074-fetproact-1-2014.html}{FETPROACT1}}
-    (Future and Emerging Technology, Proactive support for GSS) in
-    Horizon 2020 is concrete evidence on the success of this line of
-    work.
-  \item Project GRACeFUL: ``Global systems Rapid Assessment tools
-    through Constraint FUnctional Languages'' granted (with
-    \textbf{2.4M EUR}, 2015--2018) by the FETPROACT1 call.
-\pause
-  \item Upcoming project CoEGSS: ``Center of Excellence\\ for Global
-    Systems Science'', start 2015-10-01, 3y.
-  \end{itemize}
 \end{frame}
 
 \begin{frame}{Ongoing work}

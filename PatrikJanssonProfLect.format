@@ -41,3 +41,7 @@
 %format CC                      =  "\mathbb{C}"
 %format Sigma                   =  "\Sigma"
 %format @                       =  "\!@\!"
+%format *R  = "\ensuremath{\mathbin{*_{\tiny" Real "}}}"
+%format _^_ = "\_" ^ "\_"
+%format ^ = "\ensuremath{\mathbin{\!\hat{}\!}}"
+%format _+_                     =  "\ensuremath{\_\!{+}\!\_}"
