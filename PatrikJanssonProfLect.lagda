@@ -220,26 +220,8 @@ into its shape (|d ()|) and contents (|[a]|).
 > get  ::  SA [a] () a
 > get  =   SA (\((),a:xs)->(a,xs))
 
-% TODO: shorten
-%%%Original abstract from the DataConv paper
-% Several generic programs for converting values from regular datatypes
-% to some other format, together with their corresponding inverses, are
-% constructed.
-% %
-% Among the formats considered are shape plus contents, compact bit
-% streams and pretty printed strings.
-% %
-% The different data conversion programs are constructed using John
-% Hughes' Arrow combinators along with a proof that printing (from a
-% regular datatype to another format) followed by parsing (from that
-% format back to the regular datatype) is the identity.
-% %
-% The printers and parsers are described in
-% %
-% PolyP
-% %
-% a polytypic extension of the functional language Haskell.
-%
+TODO: add where it ends up (prett-print/parse round-trip properties, motivate with save / load documents in editors).
+
 \end{frame}
 
 \begin{frame}{Pedagogical development and leadership (2002--)}
@@ -374,27 +356,60 @@ ArithSeqE (FromR (AppE (AppE (ArithSeqE (FromR (ListE [])))
 
 \end{frame}
 
-\begin{frame}{Global Systems Science}
+\begin{frame}{Global Systems Science (GSS)}{with the Potsdam institute for Climate Impact Research (PIK)}
 
-TODO: textify
-
-Global Systems Science work \citep{jaeger13:GSSshort}\\ leading to the FETPROACT1 call, the GRACeFUL\\ project and the CoEGSS project.
-
+  \begin{itemize}
+  \item Collaboration from 2007 onwards (main contact: Cezar Ionescu)
+  \item Aim: \emph{correct} software models for simulating global
+    systems
+\pause
+  \item Algebra of Programming [PhD course and two papers]
+  \item Global Systems Dynamic of Policy [FET-Open 2010--13, 1.3M EUR]
+  \item Workshops including ``Domain Specific Languages for Economical
+    and Environmental Modelling'', 2011
+\pause
+  \item The call
+    \textbf{\href{http://ec.europa.eu/research/participants/portal/desktop/en/opportunities/h2020/topics/2074-fetproact-1-2014.html}{FETPROACT1}}
+    (Future and Emerging Technology, Proactive support for GSS) in
+    Horizon 2020 is concrete evidence on the success of this line of
+    work.
+  \item Project GRACeFUL: ``Global systems Rapid Assessment tools
+    through Constraint FUnctional Languages'' granted (with
+    \textbf{2.4M EUR}, 2015--2018) by the FETPROACT1 call.
+\pause
+  \item Upcoming project CoEGSS: ``Center of Excellence\\ for Global
+    Systems Science'', start 2015-10-01, 3y.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Ongoing work}
-TODO: textify
 
-DSLM: Presenting Mathematical Analysis Using Functional Programming
+\begin{exampleblock}{DSLM: Presenting Math.~Analysis Using Functional Programming}
 
-Sequential Decision Problems, dependent types and generic solutions
+\begin{spec}
+Forall (eps elemOf Real) ((eps > 0)  =>  (Exists (a elemOf A) ((abs(a - sup A)) < eps)))
+\end{spec}
 
-A computational theory of policy advice and avoidability
+\end{exampleblock}
+\begin{exampleblock}{Sequential Decision Problems}
 
-Certified Context-Free Parsing: A formalisation of Valiant's Algorithm in Agda
+``Sequential Decision Problems, dependent types and generic solutions''
+
+``A computational theory of policy advice and avoidability''
+
+\end{exampleblock}
+
+\begin{exampleblock}{ValiantAgda}
+Certified Context-Free Parsing: A form. of Valiant's Algorithm in Agda
+
+Solve |C  =  W  +  C * C| for matrices of sets of non-terminals!
+\end{exampleblock}
+\end{frame}
+\begin{frame}{ValiantAgda}
+
+\includegraphics[width=0.5\textwidth]{images/UpperTriangularChocolateTwitter.png}
 
 \end{frame}
-
 \section[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
 
 \begin{frame}{DSLM: Domain Specific Languages of Mathematics}
