@@ -407,7 +407,9 @@ Solve |C  =  W  +  C * C| for matrices of sets of non-terminals!
 \end{frame}
 \begin{frame}{ValiantAgda}
 
-\includegraphics[width=0.5\textwidth]{images/UpperTriangularChocolateTwitter.png}
+\includegraphics[width=0.45\textwidth]{images/UpperTriangularChocolateTwitter.png}
+\pause
+\includegraphics[width=0.45\textwidth]{images/StrictlyUpperTriangularChocolateTwitter.png}
 
 \end{frame}
 \section[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
