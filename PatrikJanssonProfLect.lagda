@@ -312,7 +312,7 @@ into its shape (|d ()|) and contents (|[a]|).
   \begin{itemize}
   \item 2002: Director of studies
   \item 2005: Vice Head of Department for education
-  \item 2008: Deputy project leader of ``Pedagogical development of Master’s Programmes for the Bologna Structure at Chalmers'' (\textbf{30M SEK})
+  \item 2008: Deputy project leader of ``Pedagogical development of Master’s Programmes for the Bologna Structure at Chalmers'' %(\textbf{30M SEK})
   \item 2011: Head of the 5-year education programme in Computer Science and Engineering (Civilingenjör Datateknik, Chalmers). %On average 40\% of full time / year.
   \item 2013: Head of the Division of Software Technology
   \end{itemize}
@@ -359,7 +359,7 @@ and |PTS| = Pure Type System (Barendregt, et al.)
     systems
 \pause
   \item Algebra of Programming [PhD course and two papers]
-  \item Global Systems Dynamic of Policy [FET-Open 2010--13, 1.3M EUR]
+  \item Global Systems Dynamics and Policy (GSDP) [FET-Open 2010--13]
   \item Workshops including ``Domain Specific Languages for Economical
     and Environmental Modelling'', 2011
 \pause
@@ -369,8 +369,7 @@ and |PTS| = Pure Type System (Barendregt, et al.)
     Horizon 2020 is concrete evidence on the success of this line of
     work.
   \item Project GRACeFUL: ``Global systems Rapid Assessment tools
-    through Constraint FUnctional Languages'' granted (with
-    \textbf{2.4M EUR}, 2015--2018) by the FETPROACT1 call.
+    through Constraint FUnctional Languages'' granted 2015--2018 by the FETPROACT1 call.
 \pause
   \item Upcoming project CoEGSS: ``Center of Excellence\\ for Global
     Systems Science'', start 2015-10-01, 3y.
@@ -464,6 +463,8 @@ ArithSeqE (FromR (AppE (AppE (ArithSeqE (FromR (ListE [])))
 
 \begin{frame}{Ongoing work}
 
+% TODO: include RAWFP Autosar work
+
 \begin{exampleblock}{DSLM: Presenting Math.~Analysis Using Functional Programming}
 
 \begin{spec}
@@ -526,6 +527,8 @@ functional programming perspective (similar to
 \begin{exampleblock}{}
 ``... ideally, the course would improve the mathematical education of computer scientists and the computer science education of mathematicians.''
 \end{exampleblock}
+
+\url{https://github.com/DSLsofMath/DSLsofMath/blob/master/DSLsofMath.md}
 
 \vfill
 \vfill
