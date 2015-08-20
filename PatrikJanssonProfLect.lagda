@@ -5,7 +5,9 @@
 %\usetheme{Hannover}% Sections heading but too much wasted space
 %\usetheme{Dresden}
 %\usetheme{Warsaw}
+% \usepackage{appendixnumberbeamer}
 \usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{natbib}
 \usepackage{color,soul}
 \usepackage{graphicx}
@@ -21,6 +23,15 @@
 %    \setlength\leftskip{-1cm}%
 %    \small
 % }
+
+\newcommand{\backupbegin}{
+   \newcounter{finalframe}
+   \setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \setcounter{framenumber}{\value{finalframe}}
+}
+
 
 \pgfdeclareimage[height=3cm]{Tall}{images/Tall_i_sol_Langvind.jpg}
 \pgfdeclareimage[height=3cm]{Ekorre}{images/Ekorre_smultron_Langvind.jpg}
@@ -190,7 +201,7 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 
 \end{frame}
 
-\begin{frame}[fragile]{Implementing the theory (|cataT = cata _| in Haskell)}
+\begin{frame}[fragile]{Implementing the theory (|cataT = cata| in Haskell)}
 
 \begin{exampleblock}{Catamorphisms towards implementation}
 % For some reason, the uncover version gives an error (but would be prettier).
@@ -212,7 +223,6 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 \end{tikzcd}
 \end{exampleblock}
 \pause
-\pause
 \begin{code}
 data Mu f where                -- Notation: |Mu f = muF|
   Inn :: f (Mu f) -> Mu f
@@ -225,7 +235,7 @@ cataT alg = alg . fmap (cataT alg) . out
 \end{code}
 \end{frame}
 
-\begin{frame}{Implementing the theory (|cataT = cata _| in Haskell)}
+\begin{frame}{Implementing the theory (|cataT = cata| in Haskell)}
 
 \begin{code}
 data Mu f where
@@ -410,6 +420,8 @@ stepCase :  (x : Real) -> (m n  : Nat)  ->
 expLemma x Z      n = baseCase x n
 expLemma x (S m)  n = stepCase x m n (expLemma x m n)
 \end{code}
+
+%TODO: link to more lemmas: http://www.cse.chalmers.se/~patrikj/talks/Parsing_Agda_OrderLemmas.utf8.agda
 \end{frame}
 
 \begin{frame}{An example proof in Agda, part 2}
@@ -463,14 +475,12 @@ ArithSeqE (FromR (AppE (AppE (ArithSeqE (FromR (ListE [])))
 
 \begin{frame}{Ongoing work}
 
-% TODO: include RAWFP Autosar work
-
 \begin{exampleblock}{DSLM: Presenting Math.~Analysis Using Functional Programming}
-
+\vspace{-0.2cm}
 \begin{spec}
 Forall (eps elemOf Real) ((eps > 0)  =>  (Exists (a elemOf A) ((abs(a - sup A)) < eps)))
 \end{spec}
-
+\vspace*{-0.2cm}
 \end{exampleblock}
 \begin{exampleblock}{Sequential Decision Problems}
 
@@ -480,50 +490,87 @@ Forall (eps elemOf Real) ((eps > 0)  =>  (Exists (a elemOf A) ((abs(a - sup A)) 
 
 \end{exampleblock}
 
+\begin{exampleblock}{AUTOSAR calculus}
+``A semantics of core AUTOSAR''
+
+(AUTOSAR = AUTomotive Open System ARchitecture)
+\end{exampleblock}
+
 \begin{exampleblock}{ValiantAgda}
 Certified Context-Free Parsing: A form. of Valiant's Algorithm in Agda
 
 Solve |C  =  W  +  C * C| for matrices of sets of non-terminals!
 \end{exampleblock}
+
+
 \end{frame}
-\begin{frame}{ValiantAgda}
+
+%format · = "\!\!\cdot\!\!"
+\begin{frame}{ValiantAgda (a part in the middle)}
+
+[Valiant, 1975] provides a rather awkward interated
+def. for all bracketings:
+
+\begin{code}
+  C =  W + W · W +  W ·(W · W) + (W · W) · W +
+       (W · W) ·(W · W) + ...
+\end{code}
+
+We use the smallest solution to the following equation:
+
+\begin{code}
+   C == W + C · C
+\end{code}
+
+(for strictly upper triangular |W|). Or more precisely
+
+\begin{code}
+Clo : U -> U ->  Set
+Clo   W    C  =  C == W + C · C
+
+LowerBound : {A : Set} -> (A -> Set) -> A -> Set
+LowerBound P x = ∀ z -> (P z -> x ≤ z)
+
+Minimal    : {A : Set} -> (A -> Set) -> A -> Set
+Minimal P x =  P x  /\  LowerBound P x
+
+Spec =  ∀ (W : U) → ∃ \(C : U) ->
+        Minimal (Clo W) C
+\end{code}
+\end{frame}
+
+\begin{frame}{ValiantAgda (the chocolate part;-)}
 
 \includegraphics[width=0.45\textwidth]{images/UpperTriangularChocolateTwitter.png}
 \pause
-\includegraphics[width=0.45\textwidth]{images/StrictlyUpperTriangularChocolateTwitter.png}
-
+\includegraphics[width=0.5\textwidth]{images/StrictlyUpperTriangularChocolateTwitter.png}
+\vfill
 \end{frame}
 
 \begin{frame}[fragile]{Summary}
-
+\newcommand{\Dure}{\text{\emph{Duregård}}}
+\newcommand{\R}{\arrow[r]}
+\newcommand{\RB}{\arrow[r, "Bologna"]}
+\newcommand{\RR}{\arrow[rr, bend left=15]}
+\newcommand{\D}{\arrow[d]}
+\newcommand{\DR}{\arrow[dr]}
+\newcommand{\DL}{\arrow[dl]}
+\newcommand{\UR}{\arrow[ur]}
 \begin{tikzcd}
-PolyP  & DataConv   & AoP Agda    & DSLsofMath\\
-Norell & Danielsson & Bernardy    & Duregård  \\
-Agda   & Fast'nLoose& ParaDep     & Feat      \\
-PIK    & GSDP       & GRACeFUL    & CoeGSS    \\
-DoS    & VPref.Gru  & PA@@D       & DivHead
+PolyP  \D\R & DataConv & AoP Agda \R   & ValiantAgda\\
+Norell \D   & Danielsson \D\DL& Bernardy \D\UR& \Dure \D \\
+Agda \ar[rruu, bend left=20]       & Fast 'n Loose & ParaDep       & Feat      \\
+\only<2->{DoS \R      & VPref.Gru \RB  & PA@@D  \R     & DivHead   \\}
+\only<3->{PIK \R \DR  & GSDP \R \RR \D& GRACeFUL      & CoEGSS    \\
+            & Ionescu \UR \R& DSLsofMath}
 \end{tikzcd}
-\vfill
-
-% \begin{itemize}
-% \item early work on Generic Programming
-% \item Polytypic Data Conversion Programs \citep{janssonjeuring-dataconv}
-% \item the Bologna structure (3y BSc + 2y MSc) at cse.chalmers.se
-%  in my role as Vice Head of Department
-% \item self-evaluation reports for the CSE degrees (in my role as Head of the CSE programme).
-%       The BSc got ``very high quality''.
-% \item Global Systems Science work \citep{jaeger13:GSSshort}\\ leading to the FETPROACT1 call, the GRACeFUL\\ project and the CoEGSS project.
-% \item my PhD graduates: Norell, Danielsson, and Bernardy
-% \item Fast and Loose Reasoning \citep{danielssonetal06:fastandloose}
-% \item Parametricity and dependent types \citep{bernardy_parametricity_2010}
-% \item Algebra of Programming in Agda \citep{MuKoJansson2009AoPA}
-% \item Feat: functional enumeration of algebraic types \citep{duregardHaskell12Feat}
-% \end{itemize}
-%
-
 \end{frame}
 
-\section[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
+\backupbegin
+%\appendix
+\section{Spare slides}
+
+% \section[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
 
 \begin{frame}{DSLM: Domain Specific Languages of Mathematics}
 \begin{exampleblock}{Style example}
@@ -1019,7 +1066,7 @@ Partial implementation in Agda:
 
 %% -------------------------------------------------------------------
 
-\appendix
+%\appendix
 \section{Bibliography}
 \begin{frame}
 \frametitle{Bibliography}
@@ -1028,6 +1075,7 @@ Partial implementation in Agda:
 \bibliography{PatrikJanssonProfLect}
 \end{frame}
 
+\backupend
 
 \end{document}
 
