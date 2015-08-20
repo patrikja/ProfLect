@@ -190,17 +190,41 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 
 \end{frame}
 
-\begin{frame}[fragile]{Implementing the theory (|cata| in Haskell)}
+\begin{frame}[fragile]{Implementing the theory (|cata _ = cataT| in Haskell)}
 
-% |F muF| \arrow{d}{|F (cata alg)|}  &|muF| \arrow{d}{|cata alg|}\\
 \begin{exampleblock}{Catamorphisms towards implementation}
+% \begin{tikzcd}
+% \uncover<3->{|F (F muF)| \arrow{d}{|F (F (cata alg))|}}
+%       & |F muF| \arrow{d}{|F (cata alg)|} \uncover<3->{\arrow{l}{|F out|}} \uncover<1>{\arrow{r}{|inn|}}
+%             &|muF| \uncover<2->{\arrow{l}{|out|}} \arrow{d}{|cata alg|}\\
+% \uncover<3->{|F (F A)| \arrow{r}{|F alg|}}
+%       & |F A| \arrow{r}{|alg|}
+%             &A
+% \end{tikzcd}
 \begin{tikzcd}
-|F muF| \arrow{d}{|F (cata alg)|} \only<1>{\arrow{r}{|inn|}}  &|muF| \only<2->{\arrow{l}{|out|}} \arrow{d}{|cata alg|}\\
-|F A| \arrow{r}{|alg|}             &A
+\only<3->{|F (F muF)|} \only<3->{\arrow{d}{|F (F (cata alg))|}}
+      & |F muF| \arrow{d}{|F (cata alg)|} \only<3->{\arrow{l}{|F out|}} \only<1>{\arrow{r}{|inn|}}
+            &|muF| \only<2->{\arrow{l}{|out|}} \arrow{d}{|cata alg|}\\
+\only<3->{|F (F A)| \arrow{r}{|F alg|}}
+      & |F A| \arrow{r}{|alg|}
+            &A
 \end{tikzcd}
 \end{exampleblock}
-% TODO: expand the diagram in as many copies as needed into a ladder, for a particular finite value, etc.
+\pause
+\pause
+\begin{code}
+data Mu f where
+  Inn :: f (Mu f) -> Mu f
 
+out :: Mu f -> f (Mu f)
+out (Inn x) = x
+
+cataT :: Functor f => (f a -> a) -> (Mu f -> A)
+cataT alg = alg . fmap (cataT alg) . out
+\end{code}
+\end{frame}
+
+\begin{frame}{Implementing the theory (|cata _ = cataT| in Haskell)}
 
 \begin{code}
 data Mu f where
@@ -212,17 +236,17 @@ out (Inn x) = x
 cataT :: Functor f => (f a -> a) -> (Mu f -> A)
 cataT alg = alg . fmap (cataT alg) . out
 \end{code}
-\pause
-%TODO: shrink example?
-\pause
+
 Example:
+|Mu FTree| is the datatype of binary trees with |Int| leaves.
+
 \begin{code}
-data ITree subtree where
-  Leaf  :: Int -> ITree subtree
-  Bin   :: subtree -> subtree -> ITree subtree
+data FTree subtree where
+  Leaf  :: Int -> FTree subtree
+  Bin   :: subtree -> subtree -> FTree subtree
 \end{code}
-|Mu ITree| is the datatype of binary trees with |Int|egers in the leaves.
 \end{frame}
+
 
 \begin{frame}{Implementing the theory (arrows in Haskell)}
 
