@@ -190,9 +190,10 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 
 \end{frame}
 
-\begin{frame}[fragile]{Implementing the theory (|cata _ = cataT| in Haskell)}
+\begin{frame}[fragile]{Implementing the theory (|cataT = cata _| in Haskell)}
 
 \begin{exampleblock}{Catamorphisms towards implementation}
+% For some reason, the uncover version gives an error (but would be prettier).
 % \begin{tikzcd}
 % \uncover<3->{|F (F muF)| \arrow{d}{|F (F (cata alg))|}}
 %       & |F muF| \arrow{d}{|F (cata alg)|} \uncover<3->{\arrow{l}{|F out|}} \uncover<1>{\arrow{r}{|inn|}}
@@ -213,18 +214,18 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 \pause
 \pause
 \begin{code}
-data Mu f where
+data Mu f where                -- Notation: |Mu f = muF|
   Inn :: f (Mu f) -> Mu f
 
-out :: Mu f -> f (Mu f)
+out :: Mu f -> f (Mu f)        -- The inverse of |Inn|
 out (Inn x) = x
 
-cataT :: Functor f => (f a -> a) -> (Mu f -> A)
+cataT :: Functor f => (f a -> a) -> (Mu f -> a)
 cataT alg = alg . fmap (cataT alg) . out
 \end{code}
 \end{frame}
 
-\begin{frame}{Implementing the theory (|cata _ = cataT| in Haskell)}
+\begin{frame}{Implementing the theory (|cataT = cata _| in Haskell)}
 
 \begin{code}
 data Mu f where
@@ -271,22 +272,38 @@ and many other instances.
 While John Hughes wrote ``Generalising Monads to Arrows'' [SCP'00]
 we used them for data conversion [SCP'02].
 
+Motivation:
+\begin{itemize}
+\item save / load documents in editors should preserve the meaning
+\item but the source code for saving is not connected to that for loading
+\item proofs of pretty-print / parse round-trip properties are rare
+\end{itemize}
+
+Observations / contributions:
+\begin{itemize}
+\item we can describe both the saving and the loading using arrows
+\item we formalize the properties required
+\item we provide generic proofs of the round-trip properties
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Polytypic Data Conversion Programs (cont.)}
+
 The starting point was separation of a datastructure (of type |d a|)
 into its shape (|d ()|) and contents (|[a]|).
 
-> separate  :: Regular d => SA [a] (d a) (d ())
+> separate  :: Regular d => SA [a]  (d a)    (d ())
 > separate  = pmapAr put
 >
-> combine   :: Regular d => SA [a] (d ()) (d a)
+> combine   :: Regular d => SA [a]  (d ())   (d a)
 > combine   = pmapAl get
 >
-> put  ::  SA [a] a ()
-> put  =   SA (\(a,xs)->((),a:xs))
+> put  ::  SA [a]  a   ()
+> get  ::  SA [a]  ()  a
 >
-> get  ::  SA [a] () a
-> get  =   SA (\((),a:xs)->(a,xs))
-
-TODO: add where it ends up (pretty-print/parse round-trip properties, motivate with save / load documents in editors).
+> put  =   SA (\(a,   xs    )  -> ((),   a:xs  ))
+> get  =   SA (\((),  a:xs  )  -> (a,    xs    ))
 
 \end{frame}
 
