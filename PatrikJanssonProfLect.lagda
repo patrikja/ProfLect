@@ -493,6 +493,36 @@ Solve |C  =  W  +  C * C| for matrices of sets of non-terminals!
 \includegraphics[width=0.45\textwidth]{images/StrictlyUpperTriangularChocolateTwitter.png}
 
 \end{frame}
+
+\begin{frame}[fragile]{Summary}
+
+\begin{tikzcd}
+PolyP  & DataConv   & AoP Agda    & DSLsofMath\\
+Norell & Danielsson & Bernardy    & Duregård  \\
+Agda   & Fast'nLoose& ParaDep     & Feat      \\
+PIK    & GSDP       & GRACeFUL    & CoeGSS    \\
+DoS    & VPref.Gru  & PA@@D       & DivHead
+\end{tikzcd}
+\vfill
+
+% \begin{itemize}
+% \item early work on Generic Programming
+% \item Polytypic Data Conversion Programs \citep{janssonjeuring-dataconv}
+% \item the Bologna structure (3y BSc + 2y MSc) at cse.chalmers.se
+%  in my role as Vice Head of Department
+% \item self-evaluation reports for the CSE degrees (in my role as Head of the CSE programme).
+%       The BSc got ``very high quality''.
+% \item Global Systems Science work \citep{jaeger13:GSSshort}\\ leading to the FETPROACT1 call, the GRACeFUL\\ project and the CoEGSS project.
+% \item my PhD graduates: Norell, Danielsson, and Bernardy
+% \item Fast and Loose Reasoning \citep{danielssonetal06:fastandloose}
+% \item Parametricity and dependent types \citep{bernardy_parametricity_2010}
+% \item Algebra of Programming in Agda \citep{MuKoJansson2009AoPA}
+% \item Feat: functional enumeration of algebraic types \citep{duregardHaskell12Feat}
+% \end{itemize}
+%
+
+\end{frame}
+
 \section[DSLsofMath]{DSLM: Presenting Mathematical Analysis Using Functional Programming}
 
 \begin{frame}{DSLM: Domain Specific Languages of Mathematics}
