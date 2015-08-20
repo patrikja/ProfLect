@@ -68,21 +68,26 @@ importance in it'' [A Mathematician’s Apology, G.~H.~Hardy]\\
 This talk: \url{https://github.com/patrikja/ProfLect}
 \end{frame}
 \section{Best results}
-\begin{frame}{My best results over the years}
+\begin{frame}{My best results over the years (part 1)}
 Among my best results I count
 \begin{itemize}
 \item early work on Generic Programming \citep{backhouseetal98, janssonjeuring1997a} (well cited)
 \item Polytypic Data Conversion Programs \citep{janssonjeuring-dataconv}
 \item the Bologna structure (3y BSc + 2y MSc) at cse.chalmers.se
  in my role as Vice Head of Department
-\item my PhD graduates: Norell, Danielsson, and Bernardy
-\item Fast and Loose Reasoning \citep{danielssonetal06:fastandloose}
-\item Algebra of Programming in Agda \citep{MuKoJansson2009AoPA}
-\item Parametricity and dependent types \citep{bernardy_parametricity_2010}
-\item Feat: functional enumeration of algebraic types \citep{duregardHaskell12Feat}
 \item self-evaluation reports for the CSE degrees (in my role as Head of the CSE programme).
       The BSc got ``very high quality''.
 \item Global Systems Science work \citep{jaeger13:GSSshort}\\ leading to the FETPROACT1 call, the GRACeFUL\\ project and the CoEGSS project.
+\end{itemize}
+\end{frame}
+\begin{frame}{My best results over the years (part 2)}
+\ldots continued
+\begin{itemize}
+\item my PhD graduates: Norell, Danielsson, and Bernardy
+\item Fast and Loose Reasoning \citep{danielssonetal06:fastandloose}
+\item Parametricity and dependent types \citep{bernardy_parametricity_2010}
+\item Algebra of Programming in Agda \citep{MuKoJansson2009AoPA}
+\item Feat: functional enumeration of algebraic types \citep{duregardHaskell12Feat}
 \end{itemize}
 
 \end{frame}
@@ -183,11 +188,43 @@ Category |C|, (endo-)functor |F : C -> C|, |F|-algebra |(A, alpha : F A -> A)|,
 \end{tikzcd}
 \end{exampleblock}
 
-% TODO: explain that the cata-diagram can be used to implement |cata alg|. (|inn| has the inverse |out|, expand the diagram in as many copies as needed into a ladder, for a particular finite value, etc.)
-
 \end{frame}
 
-\begin{frame}{Implementing the theory (in Haskell)}
+\begin{frame}[fragile]{Implementing the theory (|cata| in Haskell)}
+
+% |F muF| \arrow{d}{|F (cata alg)|}  &|muF| \arrow{d}{|cata alg|}\\
+\begin{exampleblock}{Catamorphisms towards implementation}
+\begin{tikzcd}
+|F muF| \arrow{d}{|F (cata alg)|} \only<1>{\arrow{r}{|inn|}}  &|muF| \only<2->{\arrow{l}{|out|}} \arrow{d}{|cata alg|}\\
+|F A| \arrow{r}{|alg|}             &A
+\end{tikzcd}
+\end{exampleblock}
+% TODO: expand the diagram in as many copies as needed into a ladder, for a particular finite value, etc.
+
+
+\begin{code}
+data Mu f where
+  Inn :: f (Mu f) -> Mu f
+
+out :: Mu f -> f (Mu f)
+out (Inn x) = x
+
+cataT :: Functor f => (f a -> a) -> (Mu f -> A)
+cataT alg = alg . fmap (cataT alg) . out
+\end{code}
+\pause
+%TODO: shrink example?
+\pause
+Example:
+\begin{code}
+data ITree subtree where
+  Leaf  :: Int -> ITree subtree
+  Bin   :: subtree -> subtree -> ITree subtree
+\end{code}
+|Mu ITree| is the datatype of binary trees with |Int|egers in the leaves.
+\end{frame}
+
+\begin{frame}{Implementing the theory (arrows in Haskell)}
 
 > class Category cat where -- In the Haskell library |Control.Category|
 >     id   :: cat a a                          -- the identity arrow
