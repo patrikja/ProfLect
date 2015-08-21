@@ -504,6 +504,14 @@ Solve |C  =  W  +  C * C| for matrices of sets of non-terminals!
 
 
 \end{frame}
+\begin{frame}{ValiantAgda \only<2->{(the chocolate part;-)}}
+Solve |C  =  W  +  C * C| for strictly upper triangular matrices of something.
+\pause
+\includegraphics[width=0.45\textwidth]{images/UpperTriangularChocolateTwitter.png}
+%\pause
+\includegraphics[width=0.5\textwidth]{images/StrictlyUpperTriangularChocolateTwitter.png}
+\vfill
+\end{frame}
 
 %format · = "\!\!\cdot\!\!"
 \begin{frame}{ValiantAgda (a part in the middle)}
@@ -539,13 +547,6 @@ Spec =  ∀ (W : U) → ∃ \(C : U) ->
 \end{code}
 \end{frame}
 
-\begin{frame}{ValiantAgda (the chocolate part;-)}
-
-\includegraphics[width=0.45\textwidth]{images/UpperTriangularChocolateTwitter.png}
-\pause
-\includegraphics[width=0.5\textwidth]{images/StrictlyUpperTriangularChocolateTwitter.png}
-\vfill
-\end{frame}
 
 \begin{frame}[fragile]{Summary}
 \newcommand{\Dure}{\text{\emph{Duregård}}}
@@ -567,6 +568,17 @@ Agda \ar[rruu, bend left=20]       & Fast 'n Loose & ParaDep       & Feat      \
 \end{frame}
 
 \backupbegin
+
+\section{Bibliography}
+
+\begin{frame}[shrink=30]
+\bibliographystyle{abbrvnat}
+\bibliography{PatrikJanssonProfLect}
+\end{frame}
+\backupend
+
+\end{document}
+
 %\appendix
 \section{Spare slides}
 
@@ -1067,15 +1079,6 @@ Partial implementation in Agda:
 %% -------------------------------------------------------------------
 
 %\appendix
-\section{Bibliography}
-\begin{frame}
-\frametitle{Bibliography}
-
-\bibliographystyle{abbrvnat}
-\bibliography{PatrikJanssonProfLect}
-\end{frame}
-
-\backupend
 
 \end{document}
 
