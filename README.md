@@ -1,6 +1,6 @@
 # ProfLect
 
-Preparing my inaugural lecture for professor (2015-08-21 at 13.00 in room EC, Chalmers).
+Material related to my inaugural lecture as Full Professor or Computer Science (2015-08-21 at 13.00 in room EC, Chalmers).
 
 Slides:
 * http://www.cse.chalmers.se/~patrikj/papers/PatrikJanssonProfLect.pdf
