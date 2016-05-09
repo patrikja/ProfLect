@@ -1,3 +1,39 @@
+\documentclass[11pt,twoside,twocolumn]{article}
+\usepackage{bibentry}
+\usepackage{wrapfig}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{pdfpages}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{parskip}
+\newenvironment{timelist}
+{\begin{description}
+ \addtolength{\itemindent}{1em}
+ \setlength{\itemsep}{0cm plus 0.1cm minus 0.1cm}}
+{\end{description}}
+\newcommand{\todo}[2][?]{\marginpar{\raggedright \tiny \textbf{TODO (by #1):} #2}}
+
+\providecommand{\cvpart}[1]{\subsubsection*{#1:}}
+\providecommand{\cpp}{C\kern-0.05em\texttt{+\kern-0.03em+}}
+\providecommand{\Cpp}{\cpp}
+\usepackage[english]{babel}
+\usepackage{uri}
+
+\let\oldmarginpar\marginpar
+\renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize #1]%
+{\raggedright\footnotesize #1}}
+\providecommand{\TODO}[1]{\marginpar{#1}}
+
+\usepackage{tocloft}
+\providecommand{\noc}[1]{\newline Number of citations: \textbf{#1}.}
+\title{Coherent description of my collected research work}
+\author{Patrik Jansson}
+\date{2016-05-09}
+\begin{document}
+\maketitle
+
 \section{PhD studies}
 I started my research career as a MSc thesis student in the fall of
 1994 with Johan Jeuring as my supervisor.
@@ -189,16 +225,24 @@ I have been active in recruitment, organisation and research (mainly
 the work package ``DSL framework'').
 %
 In addition to the publications mentioned above we also published a
-paper on Class Laws in Haskell \citep{jeuringHaskell12ClassLaws}.
+paper on Class Laws in Haskell \citep{jeuringHaskell12ClassLaws}
+%
+and one on ``Certified Context-Free Parsing: A formalisation of
+Valiant's Algorithm in Agda'' \citep{bernardy_certified_2015}.
 
 My most recent project on DSLs is
 ``\href{http://wiki.portal.chalmers.se/cse/pmwiki.php/FP/DSLsofMath}{Domain-Specific
   Languages of Mathematics}'', supported by Chalmers Education Quality
 Funding (2014--2016).
 %
-This project will lead to a new BSc level course, but ``... ideally,
-the course would improve the mathematical education of computer
-scientists and the computer science education of mathematicians.''
+This project has lead to one new BSc level course, the project ideas
+are described in the pedagogical paper
+\citep{TFPIE15_DSLsofMath_IonescuJansson},
+%
+and ``... ideally, the course would improve the mathematical education
+of computer scientists and the computer science education of
+mathematicians.''
+
 
 \subsection{Global Systems Science}\label{sec:GSS}
 
@@ -234,11 +278,12 @@ Languages'' granted (with \textbf{2.4M EUR}, 2015--2018) by the
 FETPROACT1 call.
 %
 In the GRACeFUL project I will work with my new PhD student (I. Lobo
-Valbuena) who just started (2015-08-01).
+Valbuena) who started 2015-08-01.
 
-I'm also site-leader for Chalmers in a Center of Excellence for Global
-Systems Science (CoEGSS) which will start 2015-10-01 with an initial
-3-year funding period.
+From 2015-10-01 I'm also site-leader for Chalmers in a ``Center of
+Excellence for Global Systems Science'' (CoEGSS, 2015--2018).
+%
+
 
 \section{Best results}
 Among my best results I count
@@ -258,6 +303,7 @@ Among my best results I count
   programme). The BSc level even got the grade ``very high quality''.
 \end{itemize}
 
+\newpage
 \section{Future plans}
 
 I will
@@ -297,10 +343,9 @@ I will
 
 
 \renewcommand{\bibfont}{\small}
-%\bibliographystyle{unsrt}
 \bibliographystyle{unsrtnat}
-%\bibliographystyle{abbrvnat}
-\bibliography{../../bibtex/genprog,../../bibtex/jp.short,../../bibtex/misc}
+%\bibliography{../../bibtex/genprog,../../bibtex/jp.short,../../bibtex/misc}
+\bibliography{PatrikJanssonProfLect}
 
 \end{document}
 
